@@ -14,6 +14,7 @@ public class DateTimeProviderImpl implements DateTimeProvider {
 
 	@Override
 	public Optional<TemporalAccessor> getNow() {
+		System.out.println(OffsetDateTime.now());
 		return Optional.of(OffsetDateTime.now());
 	}
 }

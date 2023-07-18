@@ -26,8 +26,8 @@ public class MailServiceImpl implements MailService {
 		boolean res = false;
 		if (contactForm != null) {
 
-			final String username = "salim.amara.ey@gmail.com";
-			final String password = "kuaeqyicghugvdho";
+			final String username = "careup4@gmail.com";
+			final String password = "jvrbjpqueiewuetj";
 
 			Properties props = new Properties();
 			props.put("mail.smtp.auth", true);
@@ -52,17 +52,15 @@ public class MailServiceImpl implements MailService {
 
 				Multipart multipart = new MimeMultipart();
 
-				messageBodyMessage.setContent("Bonjour,<br>" + "<p> <hr noshade size=2 width=60 align=left>"
-						+ contactForm.getMessage() + "</p> <br>", "text/html");
+				messageBodyMessage.setContent(contactForm.getMessage() + "</p> <br>"+ contactForm.getEmail_patient_pro()+"<br>"+contactForm.getNum_tel()+"<br>", "text/html");
 				multipart.addBodyPart(messageBodyMessage);
 
-				signature.setContent("<hr noshade size=2 width=60 align=left>" + "<br> Cordialement <br>"
-						+ contactForm.getEmail(), "text/html");
+				signature.setContent(contactForm.getEmail(), "text/html");
 				multipart.addBodyPart(signature);
 				message.setContent(multipart);
 
 				try {
-					message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("salim.amara@esprit.tn"));
+					message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(contactForm.getEmail()));
 					System.out.println("Sending mail ...");
 					Transport.send(message);
 				} catch (MessagingException e) {

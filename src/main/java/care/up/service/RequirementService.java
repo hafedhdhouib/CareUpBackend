@@ -14,7 +14,7 @@ public interface RequirementService {
 	public List<Requirement> getAllRequirements(Pageable pageable);
 
 	public Requirement getRequirementById(Long id);
-
+	
 	public Requirement editRequirement(Requirement requirement);
 
 	public Boolean deleteRequirementById(Long id);

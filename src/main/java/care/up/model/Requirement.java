@@ -38,7 +38,6 @@ public class Requirement extends AbstractBaseEntity {
 	private RequestType type;
 
 	@NotNull
-	@Column(unique = true)
 	private String title;
 
 	public static Requirement mapToEntity(RequirementDTO dto) {
