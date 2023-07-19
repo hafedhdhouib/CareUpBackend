@@ -68,4 +68,15 @@ public class RequirementServiceImpl implements RequirementService {
 		}
 		return false;
 	}
+
+	@Override
+	public Requirement findByTitle(String title) {
+		if(title != null){
+			Optional<Requirement> optional = requirementRepository.findByTitle(title);
+			if (optional.isPresent()) {
+				return optional.get();
+			}
+		}
+		return null;	
+		}
 }

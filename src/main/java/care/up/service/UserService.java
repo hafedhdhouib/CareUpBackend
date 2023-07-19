@@ -29,7 +29,9 @@ public interface UserService {
 	public List<User> getHighestRatedProfessionals(ProfessionType professionType);
 	
 	public List<User> getAcceptedPatientListByProfessional(Long professionalId, Pageable pageable);
-	public List<User> getAcceptedProfessionalListByPatient(Long PatientId,  Pageable pageable);
 	
+	public List<User> getAcceptedProfessionalListByPatient(Long PatientId,  Pageable pageable);
+
+	public Boolean verfivation(String phoneNumber, int code);
 
 }

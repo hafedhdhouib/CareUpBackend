@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import care.up.model.Requirement;
 
 public interface RequirementService {
+	
+	public Requirement findByTitle(String title);
 
 	public Requirement addRequirement(Requirement requirement) throws SQLIntegrityConstraintViolationException;
 

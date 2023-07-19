@@ -84,7 +84,13 @@ public class UserController {
 			@PathVariable(name = "code") int code) {
 		return userService.checkVerifCode(phoneNumber, code);
 	}
+	
+	@GetMapping("verification/{phoneNumber}/{code}")
+	public Boolean verification(@PathVariable(name = "phoneNumber") String phoneNumber,@PathVariable(name = "code") int code) {
+		return userService.verfivation(phoneNumber,code);
+	}
 
+	
 	@PutMapping("change-password")
 	public Boolean resetPassword(@RequestBody ResetPasswordRequest request) {
 		return userService.editUserPassword(request.getPhoneNumber(), request.getVerifCode(),
