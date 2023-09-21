@@ -47,7 +47,7 @@ public class UserPrinciple implements UserDetails {
 
 	public static UserPrinciple build(User user) {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		if (user instanceof Professional) {
+		if (user instanceof Professional && ((Professional) user).getProfession().toString().length()<=14) {
 			authorities.add(new SimpleGrantedAuthority("Professional_Role"));
 		} else if (user instanceof Patient) {
 			authorities.add(new SimpleGrantedAuthority("Patient_Role"));

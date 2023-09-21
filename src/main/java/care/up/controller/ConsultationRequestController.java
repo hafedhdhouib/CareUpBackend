@@ -38,6 +38,11 @@ public class ConsultationRequestController {
 				requestService.addConsultationRequest(ConsultationRequest.mapToEntity(consultationRequestDTO))));
 	}
 
+	@GetMapping("get-count-request")
+	public Number getCountRequest() {
+		return requestService.countConsultationRequest();
+	}
+	
 	@GetMapping("get-all/{page}/{size}")
 	public ResponseEntity<List<ConsultationRequestDTO>> getAllwithPaginate(@PathVariable(name = "page") int page,
 			@PathVariable(name = "size") int size) {

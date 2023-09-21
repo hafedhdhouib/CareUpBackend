@@ -35,6 +35,8 @@ public class UserDTO implements Cloneable {
 	private String genre;
 
 	private Boolean verified;
+	
+	private Boolean actif;
 
 	private AddressDTO address;
 

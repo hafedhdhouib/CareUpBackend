@@ -77,6 +77,9 @@ public class User extends AbstractBaseEntity implements Cloneable {
 	
 	@Range(min=111111, max=999999)
 	private int verifCode;
+	
+	private Boolean actif;
+
 
 	private Boolean verified;
 

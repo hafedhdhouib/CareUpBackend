@@ -14,6 +14,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import care.up.security.jwt.JwtAuthEntryPoint;
 import care.up.security.jwt.JwtAuthTokenFilter;
@@ -58,12 +60,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user/reset-password/**").permitAll()
 				.antMatchers("/user/check-code/**").permitAll()
 				.antMatchers("/user/change-password/**").permitAll()
+				.antMatchers("/user/verification/**").permitAll()
 				.antMatchers("/websocket/**").permitAll().antMatchers("/ws/info",
 						"/ws/**").permitAll()
 				.antMatchers("/test/**").permitAll()
 				.antMatchers("/swagger-ui/**").permitAll()
-				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").permitAll()
-				.anyRequest().authenticated();
+				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").permitAll();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

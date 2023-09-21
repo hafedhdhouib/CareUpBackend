@@ -27,5 +27,6 @@ public interface ConsultationRequestService {
 
 	public ConsultationRequest acceptConsultationRequest(Long professionalId, ConsultationRequest req);
 	
+	public Number countConsultationRequest();
 
 }

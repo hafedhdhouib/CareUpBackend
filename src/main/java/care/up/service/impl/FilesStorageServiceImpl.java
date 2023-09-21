@@ -64,7 +64,9 @@ public class FilesStorageServiceImpl implements FilesStorageService {
 			System.out.println(filename);
 
 			if (resource.exists() || resource.isReadable()) {
+				System.out.println(resource);
 				return resource;
+
 			} else {
 				return null;
 			}

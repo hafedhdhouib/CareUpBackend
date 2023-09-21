@@ -25,6 +25,8 @@ public class FilesController {
 	@GetMapping("/{filename}")
 	public ResponseEntity<?> getFile(@PathVariable(name = "filename") String filename) {
 		Resource file = storageService.load(filename);
+		System.out.println(file);
+
 		if (file != null) {
 			return ResponseEntity.ok()
 					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
