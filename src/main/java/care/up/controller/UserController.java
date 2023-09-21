@@ -160,6 +160,7 @@ public class UserController {
 				return userService.verfivation(phoneNumber,code);
 	}
 
+	
 	@PutMapping("change-password")
 	public Boolean resetPassword(@RequestBody ResetPasswordRequest request) {
 		return userService.editUserPassword(request.getPhoneNumber(), request.getVerifCode(),

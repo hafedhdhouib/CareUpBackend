@@ -100,14 +100,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 	}
-	@Override
-	public Boolean verfivation(String phoneNumber, int code) {
-		
-		SMSClass sms = new SMSClass(phoneNumber, "votre code careUp est: " + code);
-		smsService.sendSMS(sms);
-		return true;
-	}
-	
+
 	@Override
 	public Boolean resetPassword(String phoneNumber) {
 		Optional<User> myUser = userRepository.findByPhoneNumber(phoneNumber);
@@ -165,18 +158,8 @@ public class UserServiceImpl implements UserService {
 	public List<User> getAcceptedProfessionalListByPatient(Long PatientId,  Pageable pageable) {
 		return userRepository.getAcceptedProfessionalListByPatient(PatientId, pageable);
 	}
-	@Override
-	public List<?> statistiqueDeligationPro() {
-		return userRepository.statistiqueDeligationPro();
-	}
-	@Override
-	public List<?> statistiqueGenreProAndDeligation() {
-		return userRepository.statistiqueGenreProAndDeligation();
-	}
 	
-	@Override
-	public List<?> statistiqueDeligationPatient() {
-		return userRepository.statistiqueDeligationPatient();
-	}
+	
+
 
 }
