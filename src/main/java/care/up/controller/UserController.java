@@ -103,6 +103,13 @@ public class UserController {
 		List<ProfessionalDTO> res = professionalService.getAllPro(PageRequest.of(page, size));
 		return ResponseEntity.status(HttpStatus.OK).body(res);
 
+	@GetMapping("get-all-pro/{page}/{size}")
+	public ResponseEntity<List<ProfessionalDTO>> getProfessional(@PathVariable(name = "page") int page,
+			@PathVariable(name = "size") int size){
+		
+		List<ProfessionalDTO> res = professionalService.getAllPro(PageRequest.of(page, size));
+		return ResponseEntity.status(HttpStatus.OK).body(res);
+
 	}
 	
 	@GetMapping("get-all-patient/{page}/{size}")
@@ -169,6 +176,16 @@ public class UserController {
 		if (Boolean.TRUE.equals(userRepository.existsByPhoneNumber(phoneNumber))) {
 			return ResponseEntity.badRequest().body("Error: Phone number is already taken!");
 		}
+		if (Boolean.TRUE.equals(userRepository.existsByEmail(email))) {
+			return ResponseEntity.badRequest().body("Error: Email is already in use!");
+		}
+		return ResponseEntity.ok(userService.verfivation(phoneNumber,code));
+	}
+	
+	@GetMapping("verif/{phoneNumber}/{email}/{code}")
+	public Boolean verificatio(@PathVariable(name = "phoneNumber") String phoneNumber,@PathVariable(name = "code") int code) {
+				return userService.verfivation(phoneNumber,code);
+	}
 
 		if (Boolean.TRUE.equals(userRepository.existsByEmail(email))) {
 			return ResponseEntity.badRequest().body("Error: Email is already in use!");
@@ -181,6 +198,7 @@ public class UserController {
 				return userService.verfivation(phoneNumber,code);
 	}
 
+	
 	@PutMapping("change-password")
 	public Boolean resetPassword(@RequestBody ResetPasswordRequest request) {
 		return userService.editUserPassword(request.getPhoneNumber(), request.getVerifCode(),
@@ -241,6 +259,10 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(proflist);
 	}
 	
+	
+
+		
+	}
 	
 
 	@GetMapping("get-accepted-patient-by-professional/{professionalId}/{page}/{size}")
