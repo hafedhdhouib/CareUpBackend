@@ -92,10 +92,6 @@ public interface ProfessionalRepository extends JpaRepository<Professional, Long
 	public List<Professional>findByAddressState(
 			@NotNull String state);
 	
-	public Page<Professional> findByProfessionAndAddressState(@NotNull ProfessionType type,
-			@NotNull String state, Pageable pageable);
-
-	
 	public Page<Professional> findByProfessionAndAddressCountryAndGenre(@NotNull ProfessionType type,
 			@NotNull String country, @NotNull String genre, Pageable pageable);
 	
