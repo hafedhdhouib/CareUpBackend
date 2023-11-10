@@ -10,7 +10,7 @@ public class SMSClass {
 	private String body;
 	
 	public SMSClass(String recipients, String body) {
-		this.recipients = "+216" + recipients;
+		this.recipients = "216" + recipients;
 		this.body = body;
 	}
 }

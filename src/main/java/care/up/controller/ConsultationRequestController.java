@@ -34,10 +34,16 @@ public class ConsultationRequestController {
 	@PostMapping("create-request")
 	public ResponseEntity<ConsultationRequestDTO> addConsultationRequest(
 			@RequestBody ConsultationRequestDTO consultationRequestDTO) {
-		return ResponseEntity.status(HttpStatus.OK).body(ConsultationRequestDTO.mapToDTO(
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(ConsultationRequestDTO.mapToDTO(
 				requestService.addConsultationRequest(ConsultationRequest.mapToEntity(consultationRequestDTO))));
 	}
 
+	@GetMapping("get-count-request")
+	public long getCountRequest() {
+		return requestService.countConsultationRequest();
+	}
+	
 	@GetMapping("get-all/{page}/{size}")
 	public ResponseEntity<List<ConsultationRequestDTO>> getAllwithPaginate(@PathVariable(name = "page") int page,
 			@PathVariable(name = "size") int size) {

@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import care.up.config.webSocket.WSService;
 import care.up.enums.RequestStatus;
+import care.up.message.SMSClass;
 import care.up.model.ChronicDisease;
 import care.up.model.ConsultationRequest;
 import care.up.model.Patient;
@@ -25,6 +27,7 @@ import care.up.repository.UserRepository;
 import care.up.service.ConsultationRequestService;
 import care.up.service.NotificationService;
 import care.up.service.RequestMatchingService;
+import care.up.service.SmsService;
 
 @Service
 public class ConsultationRequestServiceImpl implements ConsultationRequestService {
@@ -46,6 +49,20 @@ public class ConsultationRequestServiceImpl implements ConsultationRequestServic
 
 	@Autowired
 	NotificationService notificationService;
+	
+	@Autowired
+	WSService wsService;
+	
+	@Autowired
+	SmsService smsService;
+
+	private static SMSClass sms = new SMSClass(null, "votre demande a été acceptée par un professionnel de santé");
+
+	@Override
+	public long countConsultationRequest()
+	{
+		return requestRepository.count();
+	}
 
 	@Override
 	public ConsultationRequest addConsultationRequest(ConsultationRequest consultationRequest) {
@@ -156,8 +173,15 @@ public class ConsultationRequestServiceImpl implements ConsultationRequestServic
 				toAccepted.setProfessional((Professional) optional.get());
 				ConsultationRequest res = requestRepository.save(toAccepted);
 				if (res.getStatus() == RequestStatus.ACCEPTED) {
+					Patient patient = req.getPatient();
 					matchingService.delete(req.getId(), professionalId);
 					notificationService.createNotoificationForAcceptedRequest(res);
+					try {
+						sms.setRecipients("+216" + patient.getPhoneNumber());
+						smsService.sendSMS(sms);
+					} catch (Exception e) {
+						System.out.println(e);
+					}
 					return res;
 				}
 			}

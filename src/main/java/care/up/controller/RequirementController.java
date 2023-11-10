@@ -49,6 +49,15 @@ public class RequirementController {
 		return ResponseEntity.status(HttpStatus.OK).body(dtos);
 	}
 
+	@GetMapping("get-by-title/{title}")
+	public ResponseEntity<RequirementDTO> getRequirementByTitle(@PathVariable(name = "title") String title) {
+		Requirement requirement = requirementService.findByTitle(title);
+		if (requirement != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(RequirementDTO.mapToDTO(requirement));
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(null);
+	}
+
 	@GetMapping("get-by-id/{id}")
 	public ResponseEntity<RequirementDTO> getConsultationRequestById(@PathVariable(name = "id") Long id) {
 		return ResponseEntity.status(HttpStatus.OK)

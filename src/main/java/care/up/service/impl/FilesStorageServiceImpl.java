@@ -19,7 +19,7 @@ import care.up.service.FilesStorageService;
 @Service
 public class FilesStorageServiceImpl implements FilesStorageService {
 
-	private final Path root = Paths.get("uploads");
+	private final Path root = Paths.get("/var/www/careup/uploads");
 	static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	static SecureRandom rnd = new SecureRandom();
 
@@ -61,12 +61,17 @@ public class FilesStorageServiceImpl implements FilesStorageService {
 		try {
 			Path file = root.resolve(filename);
 			Resource resource = new UrlResource(file.toUri());
-			System.out.println(filename);
+			
+			System.out.println(file);
 
-			if (resource.exists() || resource.isReadable()) {
-				return resource;
-			} else {
+			if (!(resource.exists() || resource.isReadable())) {
+				System.out.println("exist");
 				return null;
+
+			} else {
+				
+				System.out.println("else");
+				return resource;
 			}
 		} catch (MalformedURLException e) {
 			throw new RuntimeException("Error: " + e.getMessage());

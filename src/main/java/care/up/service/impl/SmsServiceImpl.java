@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +20,7 @@ public class SmsServiceImpl implements SmsService {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	private final String reqUrl = "https://rest.messagebird.com/messages?access_key=A8P9zYpJFayij44Bwykzrp8x0";
+	private String reqUrl = "https://www.winsmspro.com/sms/sms/api?action=send-sms&api_key=TWFyem91a2lhZGFtc0BnbWFpbC5jb206aTFPUCt5RGlQNmVZT1FBcnJhZi1RKDQzSw==&from=Care up";
 
 	@Override
 	public boolean sendSMS(SMSClass sms) {
@@ -27,11 +28,14 @@ public class SmsServiceImpl implements SmsService {
 			HttpHeaders header = new HttpHeaders();
 			header.setContentType(MediaType.APPLICATION_JSON);
 			String reqBodyData;
+		    reqUrl= reqUrl+"&to="+sms.getRecipients()+"&sms="+sms.getBody();
 			reqBodyData = new ObjectMapper().writeValueAsString(sms);
 			HttpEntity<String> requestEnty = new HttpEntity<>(reqBodyData, header);
 			restTemplate.postForEntity(reqUrl, requestEnty, Object.class);
 			return true;
 		} catch (JsonProcessingException e) {
+			System.out.println("sms");
+
 			e.printStackTrace();
 			return false;
 		}

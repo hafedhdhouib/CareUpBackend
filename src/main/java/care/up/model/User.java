@@ -1,6 +1,8 @@
 package care.up.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -77,8 +81,14 @@ public class User extends AbstractBaseEntity implements Cloneable {
 	
 	@Range(min=111111, max=999999)
 	private int verifCode;
+	
+	private Boolean actif;
+
 
 	private Boolean verified;
+    @OneToMany(mappedBy = "abonnement")
+    Set<AbonnementUser> abonnements;
+
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
 	private Address address;

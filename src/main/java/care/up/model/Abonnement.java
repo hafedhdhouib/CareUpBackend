@@ -1,18 +1,18 @@
 package care.up.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToMany;
 
 import org.modelmapper.ModelMapper;
 
-import care.up.dto.RequirementDTO;
-import care.up.enums.RequestType;
+import care.up.dto.AbonnementDTO;
+import care.up.dto.ChronicDiseaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,25 +25,27 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Requirement extends AbstractBaseEntity {
+public class Abonnement extends AbstractBaseEntity {
 
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private RequestType type;
-
-	@NotNull
 	private String title;
+	private String description;
+	private int prix;
+	
+	private int nb_jour;
+	@Column(columnDefinition = "int default 0")
+	private int remise;
+	
+    @OneToMany(mappedBy = "user")
+    Set<AbonnementUser> users;
 
-	public static Requirement mapToEntity(RequirementDTO dto) {
+	public static Abonnement mapToEntity(AbonnementDTO dto) {
 		if (dto != null) {
 			ModelMapper modelMapper = new ModelMapper();
-			return modelMapper.map(dto, Requirement.class);
+			return modelMapper.map(dto, Abonnement.class);
 		}
 		return null;
 	}
