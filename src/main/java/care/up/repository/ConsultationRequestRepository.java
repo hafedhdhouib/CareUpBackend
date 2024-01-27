@@ -14,6 +14,10 @@ public interface ConsultationRequestRepository extends JpaRepository<Consultatio
 
 	List<ConsultationRequest> findByPatientId(Long patientId);
 	
+	List<ConsultationRequest> findByProfessionalId(Long professionalId);
+
+	Number countByProfessionalId(Long professionalId);
+	
 	List<ConsultationRequest> findByPatientIdAndStatus(Long patientId, RequestStatus requestStatus);
 
 	

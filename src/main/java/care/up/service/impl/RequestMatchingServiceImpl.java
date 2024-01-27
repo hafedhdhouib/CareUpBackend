@@ -7,27 +7,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import care.up.config.webSocket.WSService;
-import care.up.dto.ConsultationRequestDTO;
-import care.up.dto.ProfessionalDTO;
-import care.up.dto.RequestMatchingDTO;
-import care.up.dto.UserDTO;
 import care.up.message.SMSClass;
 import care.up.model.ConsultationRequest;
 import care.up.model.Professional;
 import care.up.model.RequestMatching;
-import care.up.model.User;
 import care.up.repository.ConsultationRequestRepository;
-import care.up.repository.HistoriqueSmsRepository;
 import care.up.repository.ProfessionalRepository;
 import care.up.repository.RequestMatchingRepository;
-import care.up.service.ConsultationRequestService;
+import care.up.service.HistoriqueProfessionalService;
 import care.up.service.HistoriqueSmsService;
 import care.up.service.RequestMatchingService;
 import care.up.service.SmsService;
@@ -49,6 +42,8 @@ public class RequestMatchingServiceImpl implements RequestMatchingService {
 
 	@Autowired
 	HistoriqueSmsService historiqueSmsService;
+	@Autowired
+	HistoriqueProfessionalService historiqueProfessionalService;
 
 	
 	@Autowired
@@ -151,6 +146,7 @@ System.out.print(res.size());
 
 	@Override
 	public boolean refuseRequestByProfessional(Long requestId) {
+		historiqueProfessionalService.createHistoriqueProfessionalRefuser(requestId);
 		matchingRepository.deleteById(requestId);
 		return !matchingRepository.existsById(requestId);
 	}
@@ -201,6 +197,12 @@ System.out.print(res.size());
 		}
 		return res;
 		
+	}
+
+
+	@Override
+	public void deleteByproId(long consultationRequestId, long professionalId) {
+matchingRepository.deleteByConsultationRequestIdAndProfessionalId(consultationRequestId, professionalId);	
 	}
 
 

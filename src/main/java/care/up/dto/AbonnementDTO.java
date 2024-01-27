@@ -2,13 +2,8 @@ package care.up.dto;
 
 import lombok.Data;
 
-import java.util.Date;
-
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
-
 import care.up.model.Abonnement;
-import lombok.EqualsAndHashCode;
 
 @Data
 public class AbonnementDTO {

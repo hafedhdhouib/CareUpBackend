@@ -8,7 +8,7 @@ import javax.persistence.OneToMany;
 
 import org.modelmapper.ModelMapper;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import care.up.dto.PatientDTO;
 import lombok.AllArgsConstructor;

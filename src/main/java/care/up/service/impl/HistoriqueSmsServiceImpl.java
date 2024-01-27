@@ -4,7 +4,6 @@ package care.up.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import care.up.model.ConsultationRequest;
 import care.up.model.HistoriqueSms;
 import care.up.repository.HistoriqueSmsRepository;
 import care.up.repository.ProfessionalRepository;

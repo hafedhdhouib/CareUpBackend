@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import care.up.dto.UserDTO;
 import care.up.enums.ProfessionType;
 import care.up.model.Professional;
 import care.up.model.User;

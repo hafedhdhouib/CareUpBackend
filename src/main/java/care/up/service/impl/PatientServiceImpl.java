@@ -1,8 +1,6 @@
 package care.up.service.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 
@@ -11,10 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import care.up.dto.PatientDTO;
 import care.up.model.Patient;
 import care.up.repository.PatientRepository;
-import care.up.repository.ProfessionalRepository;
 import care.up.service.PatientService;
 @Service
 @Transactional

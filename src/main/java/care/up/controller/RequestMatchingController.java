@@ -21,11 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import care.up.dto.ConsultationRequestDTO;
 import care.up.dto.RequestMatchingDTO;
-import care.up.message.LoginRequest;
 import care.up.model.ConsultationRequest;
-import care.up.model.Professional;
-import care.up.model.RequestMatching;
-import care.up.model.User;
 import care.up.service.ConsultationRequestService;
 import care.up.service.RequestMatchingService;
 

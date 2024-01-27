@@ -15,6 +15,9 @@ public interface ConsultationRequestService {
 	public Page<ConsultationRequest> getAllConsultationRequests(Pageable pageable);
 	
 	public List<ConsultationRequest> getAllByPatientId(Long patientId);
+	public List<ConsultationRequest> getAllByprofessionalId(Long professionalId);
+
+	public Number countByProfessionalID(Long professionalId);
 
 	public ConsultationRequest getConsultationRequestById(Long id);
 

@@ -67,6 +67,22 @@ public class ConsultationRequestController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(consultationRequestDTOs);
 	}
+	
+	@GetMapping("get-all-by-professionalId/{id}")
+	public ResponseEntity<List<ConsultationRequestDTO>> getAllByProfessionalId(@PathVariable(name = "id") Long id) {
+		List<ConsultationRequestDTO> consultationRequestDTOs = requestService.getAllByprofessionalId(id).stream()
+				.map(req -> ConsultationRequestDTO.mapToDTO(req)).collect(Collectors.toList());
+
+		return ResponseEntity.status(HttpStatus.OK).body(consultationRequestDTOs);
+	}
+
+	
+	@GetMapping("count-by-professionalId/{id}")
+	public Number countByProfessionalId(@PathVariable(name = "id") Long id) {
+		return requestService.countByProfessionalID(id);
+		
+	}
+	
 
 	@PutMapping("edit-request")
 	public ResponseEntity<ConsultationRequestDTO> editConsultationRequest(@RequestBody ConsultationRequestDTO dto) {

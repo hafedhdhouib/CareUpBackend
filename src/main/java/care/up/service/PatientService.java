@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import care.up.dto.PatientDTO;
 import care.up.model.Patient;
 
 public interface PatientService {

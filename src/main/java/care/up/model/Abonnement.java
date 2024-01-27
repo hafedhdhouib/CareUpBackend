@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import org.modelmapper.ModelMapper;
 
 import care.up.dto.AbonnementDTO;
-import care.up.dto.ChronicDiseaseDTO;
+//import care.up.dto.ChronicDiseaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

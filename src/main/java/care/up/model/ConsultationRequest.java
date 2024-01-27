@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 
 import org.modelmapper.ModelMapper;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import care.up.dto.ConsultationRequestDTO;
 import care.up.enums.ProfessionType;

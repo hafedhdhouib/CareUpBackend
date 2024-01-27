@@ -1,8 +1,5 @@
 package care.up.service;
 
-import java.util.List;
-
-import care.up.model.ConsultationRequest;
 import care.up.model.HistoriqueSms;
 
 public interface HistoriqueSmsService {

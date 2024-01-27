@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,6 @@ import care.up.dto.ProfessionalDTO;
 import care.up.dto.UserDTO;
 import care.up.enums.ProfessionType;
 import care.up.message.ResetPasswordRequest;
-import care.up.model.Patient;
-import care.up.model.Professional;
 import care.up.model.User;
 import care.up.repository.ProfessionalRepository;
 import care.up.repository.UserRepository;

@@ -175,6 +175,7 @@ public class ConsultationRequestServiceImpl implements ConsultationRequestServic
 				ConsultationRequest res = requestRepository.save(toAccepted);
 				if (res.getStatus() == RequestStatus.ACCEPTED) {
 					Patient patient = req.getPatient();
+					
 					matchingService.delete(req.getId(), professionalId);
 					notificationService.createNotoificationForAcceptedRequest(res);
 					try {
@@ -205,6 +206,23 @@ public class ConsultationRequestServiceImpl implements ConsultationRequestServic
 					.map(req -> req.getProfessional()).collect(Collectors.toList());
 		}
 		return new ArrayList<Professional>();
+	}
+
+	@Override
+	public List<ConsultationRequest> getAllByprofessionalId(Long professionalId) {
+		if (professionalId != null) {
+			return requestRepository.findByProfessionalId(professionalId);
+		}
+		return null;
+	}
+
+	@Override
+	public Number countByProfessionalID(Long professionalId) {
+if(professionalId!=null)
+{
+return requestRepository.countByProfessionalId(professionalId);	
+}
+return null;
 	}
 
 }

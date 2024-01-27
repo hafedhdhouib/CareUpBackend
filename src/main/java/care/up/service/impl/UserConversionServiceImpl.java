@@ -5,8 +5,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import care.up.dto.ProfessionalDTO;
-import care.up.dto.UserDTO;
 import care.up.enums.ProfessionType;
 import care.up.model.Address;
 import care.up.model.Patient;
@@ -16,7 +14,6 @@ import care.up.repository.AddressRepository;
 import care.up.repository.PatientRepository;
 import care.up.repository.ProfessionalRepository;
 import care.up.repository.UserRepository;
-import care.up.service.ProfessionalService;
 import care.up.service.UserConversionService;
 @Transactional
 @Service
